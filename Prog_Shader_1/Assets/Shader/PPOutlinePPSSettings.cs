@@ -10,9 +10,11 @@ using UnityEngine.Rendering.PostProcessing;
 public sealed class PPOutlinePPSSettings : PostProcessEffectSettings
 {
 	[Tooltip( "Float 1" )]
-	public FloatParameter _Float1 = new FloatParameter { value = 2.867915f };
-	[Tooltip( "Texture Sample 0" )]
-	public TextureParameter _TextureSample0 = new TextureParameter {  };
+	public FloatParameter _Float1 = new FloatParameter { value = 3.085306f };
+	[Tooltip( "Float 0" )]
+	public FloatParameter _Float0 = new FloatParameter { value = 33.94f };
+	[Tooltip( "Float 2" )]
+	public FloatParameter _Float2 = new FloatParameter { value = 3.01f };
 }
 
 public sealed class PPOutlinePPSRenderer : PostProcessEffectRenderer<PPOutlinePPSSettings>
@@ -21,7 +23,8 @@ public sealed class PPOutlinePPSRenderer : PostProcessEffectRenderer<PPOutlinePP
 	{
 		var sheet = context.propertySheets.Get( Shader.Find( "PPOutline" ) );
 		sheet.properties.SetFloat( "_Float1", settings._Float1 );
-		if(settings._TextureSample0.value != null) sheet.properties.SetTexture( "_TextureSample0", settings._TextureSample0 );
+		sheet.properties.SetFloat( "_Float0", settings._Float0 );
+		sheet.properties.SetFloat( "_Float2", settings._Float2 );
 		context.command.BlitFullscreenTriangle( context.source, context.destination, sheet, 0 );
 	}
 }
