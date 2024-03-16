@@ -33,6 +33,8 @@ Material:
     - _Float0: 0.5
     - _NoiseScale: 50
     - _NoiseType: 0
+    - _OffsetProperty: 0.5
+    - _ScaleProperty: 1
     - __dirty: 0
     m_Colors: []
   m_BuildTextureStacks: []
