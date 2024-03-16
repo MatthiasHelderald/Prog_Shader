@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Main Camera Profile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 4735927185207954446}
---- !u!114 &4735927185207954446
+  - {fileID: 1043306080329864847}
+--- !u!114 &1043306080329864847
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23,10 +23,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de65ef4cf83309743a1a7069400f47a6, type: 3}
-  m_Name: PProcessExoPPSSettings
+  m_Script: {fileID: 11500000, guid: 17d25ac3984864f49a4d55ed36204589, type: 3}
+  m_Name: PPOutlinePPSSettings
   m_EditorClassIdentifier: 
   active: 1
   enabled:
     overrideState: 1
     value: 1
+  _Float1:
+    overrideState: 1
+    value: 46.9
+  _TextureSample0:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 8aba6bb20faf8824d9d81946542f1ce1, type: 3}
+    defaultState: 1
