@@ -9,12 +9,12 @@ using UnityEngine.Rendering.PostProcessing;
 [PostProcess( typeof( PPOutlinePPSRenderer ), PostProcessEvent.AfterStack, "PPOutline", true )]
 public sealed class PPOutlinePPSSettings : PostProcessEffectSettings
 {
-	[Tooltip( "Float 1" )]
-	public FloatParameter _Float1 = new FloatParameter { value = 3.085306f };
-	[Tooltip( "Float 0" )]
-	public FloatParameter _Float0 = new FloatParameter { value = 33.94f };
-	[Tooltip( "Float 2" )]
-	public FloatParameter _Float2 = new FloatParameter { value = 3.01f };
+	[Tooltip( "OutlineTickness" )]
+	public FloatParameter _OutlineTickness = new FloatParameter { value = 3f };
+	[Tooltip( "OutlineColor" )]
+	public ColorParameter _OutlineColor = new ColorParameter { value = new Color(1f,1f,1f,0f) };
+	[Tooltip( "OutlineIntensity" )]
+	public FloatParameter _OutlineIntensity = new FloatParameter { value = 0f };
 }
 
 public sealed class PPOutlinePPSRenderer : PostProcessEffectRenderer<PPOutlinePPSSettings>
@@ -22,9 +22,9 @@ public sealed class PPOutlinePPSRenderer : PostProcessEffectRenderer<PPOutlinePP
 	public override void Render( PostProcessRenderContext context )
 	{
 		var sheet = context.propertySheets.Get( Shader.Find( "PPOutline" ) );
-		sheet.properties.SetFloat( "_Float1", settings._Float1 );
-		sheet.properties.SetFloat( "_Float0", settings._Float0 );
-		sheet.properties.SetFloat( "_Float2", settings._Float2 );
+		sheet.properties.SetFloat( "_OutlineTickness", settings._OutlineTickness );
+		sheet.properties.SetColor( "_OutlineColor", settings._OutlineColor );
+		sheet.properties.SetFloat( "_OutlineIntensity", settings._OutlineIntensity );
 		context.command.BlitFullscreenTriangle( context.source, context.destination, sheet, 0 );
 	}
 }

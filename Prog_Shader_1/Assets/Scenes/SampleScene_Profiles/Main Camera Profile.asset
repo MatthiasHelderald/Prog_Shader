@@ -30,12 +30,12 @@ MonoBehaviour:
   enabled:
     overrideState: 1
     value: 1
-  _Float1:
+  _OutlineTickness:
     overrideState: 1
-    value: 1.19
-  _Float0:
+    value: 1
+  _OutlineColor:
     overrideState: 1
-    value: -0.03
-  _Float2:
+    value: {r: 1, g: 0, b: 0, a: 0}
+  _OutlineIntensity:
     overrideState: 1
-    value: 2.97
+    value: 0.48
