@@ -106,7 +106,8 @@ Shader "PPOutline"
 				float eyeDepth23 = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE( _CameraDepthTexture, appendResult29.xy ));
 				float4 appendResult30 = (float4(ase_ppsScreenPosFragNorm.x , ( ase_ppsScreenPosFragNorm.y + temp_output_38_0 ) , ase_ppsScreenPosFragNorm.z , ase_ppsScreenPosFragNorm.w));
 				float eyeDepth24 = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE( _CameraDepthTexture, appendResult30.xy ));
-				float4 lerpResult70 = lerp( tex2DNode66 , ( _OutlineColor * ( ( ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth21 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth22 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth23 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth24 ) ) ) * _OutlineIntensity ) ) , _OutlineIntensity);
+				float temp_output_76_0 = ( ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth21 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth22 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth23 ) ) + ( temp_output_15_0 - ( _ProjectionParams.z * eyeDepth24 ) ) );
+				float4 lerpResult70 = lerp( tex2DNode66 , ( _OutlineColor * ( temp_output_76_0 * _OutlineIntensity ) ) , temp_output_76_0);
 				
 
 				float4 color = max( tex2DNode66 , lerpResult70 );
@@ -153,18 +154,18 @@ Node;AmplifyShaderEditor.SamplerNode;66;96.49393,-371.5679;Inherit;True;Property
 Node;AmplifyShaderEditor.TemplateShaderPropertyNode;65;-247.6253,-379.6274;Inherit;True;0;0;_MainTex;Pass;False;0;5;SAMPLER2D;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ScreenPosInputsNode;36;-2324.453,-398.7146;Float;False;0;False;0;5;FLOAT4;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;39;-2627.943,-192.4135;Float;False;Property;_OutlineTickness;OutlineTickness;0;0;Create;True;0;0;0;False;0;False;3;0;0;3;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;78;-439.4606,214.6029;Inherit;False;Property;_OutlineIntensity;OutlineIntensity;2;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;82;217.0953,33.50948;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.ColorNode;52;-56.19315,-121.904;Inherit;False;Property;_OutlineColor;OutlineColor;1;0;Create;True;0;0;0;False;0;False;1,1,1,0;0.9150943,0.9150943,0.9150943,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;79;-161.3566,52.93983;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;850.5915,86.30599;Float;False;True;-1;2;ASEMaterialInspector;0;8;PPOutline;32139be9c1eb75640a847f011acf3bcf;True;SubShader 0 Pass 0;0;0;SubShader 0 Pass 0;1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;7;False;;False;False;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;0;;0;0;Standard;0;0;1;True;False;;False;0
-Node;AmplifyShaderEditor.LerpOp;70;457.1003,81.50948;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.SimpleMaxOpNode;123;630.7818,2.968018;Inherit;False;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.StickyNoteNode;126;655.3299,-187.3699;Inherit;False;221;138;Final Mix;;1,1,1,1;Ajout d'une node max afin d'éviter qu'il y ait un gradient sur les autres pixels quand on met de la couleur entre les valeurs 0-1;0;0
 Node;AmplifyShaderEditor.StickyNoteNode;127;449.1407,223.5513;Inherit;False;221;138;Mix;;1,1,1,1;On combine l'outline colorée avec la couleur d'origine du render pipeline grâce à une node Lerp;0;0
 Node;AmplifyShaderEditor.StickyNoteNode;128;-1400.897,298.539;Inherit;False;221;138;Comparaison;;1,1,1,1;On Compare les valeur de depth des pixels entre elles;0;0
 Node;AmplifyShaderEditor.StickyNoteNode;129;-437.3306,314.7929;Inherit;False;221;138;Float;;1,1,1,1;Ajout d'un float pour controller l'intensité de l'outline le multiply donne un meilleur controle que le add dans ce cas là en raison des valeurs des pixels;0;0
 Node;AmplifyShaderEditor.StickyNoteNode;131;-2626.291,-382.0355;Inherit;False;221;138;Float;;1,1,1,1;Float pour Controller la thickness de l'outline;0;0
+Node;AmplifyShaderEditor.SimpleMaxOpNode;123;645.7818,-12.03198;Inherit;False;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+Node;AmplifyShaderEditor.LerpOp;70;382.1003,41.50948;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.ColorNode;52;-124.4146,-131.4055;Inherit;False;Property;_OutlineColor;OutlineColor;1;0;Create;True;0;0;0;False;0;False;1,1,1,0;0.9150943,0.9150943,0.9150943,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;78;-427.2719,209.8001;Inherit;False;Property;_OutlineIntensity;OutlineIntensity;2;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;82;176.8924,25.20404;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;948.0908,82.40598;Float;False;True;-1;2;ASEMaterialInspector;0;8;PPOutline;32139be9c1eb75640a847f011acf3bcf;True;SubShader 0 Pass 0;0;0;SubShader 0 Pass 0;1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;7;False;;False;False;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;0;;0;0;Standard;0;0;1;True;False;;False;0
 WireConnection;30;0;36;1
 WireConnection;30;1;32;0
 WireConnection;30;2;36;3
@@ -221,15 +222,15 @@ WireConnection;27;1;36;2
 WireConnection;27;2;36;3
 WireConnection;27;3;36;4
 WireConnection;66;0;65;0
-WireConnection;82;0;52;0
-WireConnection;82;1;79;0
 WireConnection;79;0;76;0
 WireConnection;79;1;78;0
-WireConnection;0;0;123;0
-WireConnection;70;0;66;0
-WireConnection;70;1;82;0
-WireConnection;70;2;78;0
 WireConnection;123;0;66;0
 WireConnection;123;1;70;0
+WireConnection;70;0;66;0
+WireConnection;70;1;82;0
+WireConnection;70;2;76;0
+WireConnection;82;0;52;0
+WireConnection;82;1;79;0
+WireConnection;0;0;123;0
 ASEEND*/
-//CHKSM=C295830EFFAD0EF03FF49DEB7A1A50BF7E69CAB1
+//CHKSM=FD24B4DB116DD35B4B728FD904E9CF15F9D7FE4D
