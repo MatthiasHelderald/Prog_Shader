@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _ScanLines:
-        m_Texture: {fileID: 2800000, guid: 0a890ef92202d304ba3a69d24b67a32b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8aba6bb20faf8824d9d81946542f1ce1, type: 3}
         m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _Texture:
@@ -43,28 +43,31 @@ Material:
     m_Ints: []
     m_Floats:
     - _ASEOutlineWidth: 0.03
-    - _Cutoff: 0.5
+    - _Cutoff: 0.03
     - _Float0: 1.17
-    - _Float1: 0
+    - _Float1: 1
     - _Float2: 2.01
     - _Fresnel: 3.76
     - _FresnelPower: 5
     - _Max: 0.34
     - _Min: 0.03
-    - _Opacity: 1.08
+    - _Opacity: 1
+    - _OutlineIntensity: 0.074
+    - _OutlineTickness: 0.43
     - _RimOffset: 1.81
     - _RimShadow: 0.322
-    - _ScrollSpeed: 2.65
-    - _Shades: 0.16
+    - _ScrollSpeed: 7.86
+    - _Shades: 0.27
     - _Step: 0.4
     - _StepDirection: 0.4
     - __dirty: 0
     m_Colors:
     - _ASEOutlineColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Color: {r: 0.24350302, g: 0.53385836, b: 0.9056604, a: 0}
+    - _Color: {r: 0.24350274, g: 0.53385836, b: 0.9056604, a: 0}
     - _Color0: {r: 0.9056604, g: 0.14951938, b: 0.14951938, a: 0}
     - _Color1: {r: 1, g: 0.8726415, b: 0.8726415, a: 0}
     - _FresnelColor: {r: 1, g: 0.92156863, b: 0, a: 1}
+    - _OutlineColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
     - _RimColor: {r: 0.7311321, g: 0.8788201, b: 1, a: 0}
     - _RimFalloff: {r: 0, g: 0.24, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
